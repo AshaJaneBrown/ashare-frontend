@@ -1,0 +1,11 @@
+<h2>Ashare users 💬</h2>
+
+<ul *ngIf="users.length; else noUsers">
+  <li *ngFor="let user of users">
+    <strong>{{ user.username }}</strong> ({{ user.email }}) — {{ user.bio }}
+  </li>
+</ul>
+
+<ng-template #noUsers>
+  <p>No users found 😢</p>
+</ng-template>
