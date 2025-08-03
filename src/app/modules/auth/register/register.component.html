@@ -1,0 +1,25 @@
+<div class="auth-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+    <label>
+      Username:
+      <input formControlName="username" />
+    </label>
+
+    <label>
+      Email:
+      <input formControlName="email" type="email" />
+    </label>
+
+    <label>
+      Password:
+      <input formControlName="password" type="password" />
+    </label>
+
+    <label>
+      Bio:
+      <textarea formControlName="bio" rows="3"></textarea>
+    </label>
+
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>

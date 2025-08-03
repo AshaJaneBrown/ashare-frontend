@@ -1,0 +1,46 @@
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.user-item {
+  padding: 1rem;
+  border-bottom: 1px solid #444;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #1e1e1e;
+  }
+}
+
+.user-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.3rem;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.user-email {
+  font-size: 0.9rem;
+  color: #999999;
+}
+
+.user-bio {
+  font-style: italic;
+  color: #cccccc;
+}
+
+.badge-admin {
+  background-color: #ff006e;
+  color: white;
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+}

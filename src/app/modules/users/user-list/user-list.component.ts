@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService, User } from '../../../core/services/user.service';
+import { UserService } from '../../../core/services/user.service';
+import { User } from '../../../core/models/user.model'; // ✅ новий імпорт
 
 @Component({
   selector: 'app-user-list',
   standalone: true, // ✅ standalone компонент
   imports: [CommonModule], // ✅ дає доступ до *ngIf, *ngFor
-  templateUrl: './user-list.component.html'
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
 })
 
 export class UserListComponent implements OnInit {

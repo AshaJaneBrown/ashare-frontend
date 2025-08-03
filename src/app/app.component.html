@@ -1,1 +1,28 @@
+<!-- 🌐 Загальна навігаційна панель -->
+<nav>
+  <!-- 🔷 Логотип зліва -->
+  <div class="logo">
+    <img src="/logo.png" alt="Ashare logo" />
+     <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png" alt="logo" height="32"> -->
+
+    <!-- <span class="logo-text">Ashare</span> -->
+  </div>
+
+  <!-- 🔘 Кнопки та ім’я користувача справа -->
+  <div class="nav-actions">
+    <span *ngIf="isLoggedIn() && currentUser() as user">Привіт, {{ user.username }}</span>
+
+    <ng-container *ngIf="!isLoggedIn()">
+      <button (click)="login()">Login</button>
+      <button (click)="register()">Register</button>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn()">
+      <button (click)="logout()">Logout</button>
+    </ng-container>
+  </div>
+</nav>
+
+<!-- 🔁 Тут підвантажуються маршрути -->
 <router-outlet></router-outlet>
+
