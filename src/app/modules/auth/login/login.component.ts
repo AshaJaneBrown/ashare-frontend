@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-
 import { AuthService } from '../../../core/services/auth.service';
-
+import { UserService} from '../../../core/services/user.service';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,21 +14,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  submitted = false;
+  errorMessage = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private userService: UserService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
-
-    // 🔁 Якщо вже залогінений — одразу редирект
-  if (this.authService.isLoggedIn()) {
-    this.router.navigateByUrl('/');
-  }
   }
 
   get email() {
@@ -42,11 +33,21 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.loginForm.invalid) return;
 
     this.authService.login(this.loginForm.value).subscribe({
-      next: () => this.router.navigateByUrl('/'),
-      error: (err) => console.error('Login failed', err),
+      next: () => {
+        this.userService.loadCurrentUser(); // 🟢 Оновлюємо currentUser
+        this.router.navigateByUrl('/');
+      },
+      error: (err) => {
+      if (err.status === 401 || err.status === 403) {
+        this.errorMessage = 'Invalid email or password';
+      } else {
+        this.errorMessage = 'Something went wrong. Please try again later.';
+      }    
+    }
     });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../../core/services/user.service';
-import { User } from '../../../core/models/user.model'; // ✅ новий імпорт
+import { UserService } from '../../core/services/user.service';
+import { User } from '../../core/models/user.model'; 
 
 @Component({
   selector: 'app-user-list',

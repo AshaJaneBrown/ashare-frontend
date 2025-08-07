@@ -1,25 +1,71 @@
-<div class="auth-container">
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
-    <label>
-      Username:
-      <input formControlName="username" />
-    </label>
+<div class="form-card">
+  <h3 class="text-center mb-4">Register</h3>
 
-    <label>
-      Email:
-      <input formControlName="email" type="email" />
-    </label>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Username -->
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        id="username"
+        type="text"
+        class="form-control"
+        formControlName="username"
+        [class.is-invalid]="submitted && f['username'].invalid"
+      />
+      <div class="invalid-feedback" *ngIf="submitted && f['username'].errors?.['required']">
+        Username is required
+      </div>
+    </div>
 
-    <label>
-      Password:
-      <input formControlName="password" type="password" />
-    </label>
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        id="email"
+        type="email"
+        class="form-control"
+        formControlName="email"
+        [class.is-invalid]="submitted && f['email'].invalid"
+      />
+      <div class="invalid-feedback" *ngIf="submitted">
+        <ng-container *ngIf="f['email'].errors?.['required']">
+          Email is required
+        </ng-container>
+        <ng-container *ngIf="f['email'].errors?.['email']">
+          Invalid email format
+        </ng-container>
+      </div>
+    </div>
 
-    <label>
-      Bio:
-      <textarea formControlName="bio" rows="3"></textarea>
-    </label>
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        id="password"
+        type="password"
+        class="form-control"
+        formControlName="password"
+        [class.is-invalid]="submitted && f['password'].invalid"
+      />
+      <div class="invalid-feedback" *ngIf="submitted && f['password'].errors?.['required']">
+        Password is required
+      </div>
+    </div>
 
-    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    <!-- Bio -->
+    <div class="mb-3">
+      <label for="bio" class="form-label">Bio (optional)</label>
+      <textarea
+        id="bio"
+        class="form-control"
+        formControlName="bio"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="d-grid">
+      <button type="submit" class="btn btn-success">Register</button>
+    </div>
   </form>
 </div>

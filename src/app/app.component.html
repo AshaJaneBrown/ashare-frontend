@@ -1,28 +1,53 @@
-<!-- 🌐 Загальна навігаційна панель -->
-<nav>
-  <!-- 🔷 Логотип зліва -->
-  <div class="logo">
-    <img src="/logo.png" alt="Ashare logo" />
-     <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png" alt="logo" height="32"> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 sticky-top">
+  <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="/logo3.png" alt="Ashare logo" height="50" class="me-3" />
+  </a>
 
-    <!-- <span class="logo-text">Ashare</span> -->
-  </div>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <!-- 🔘 Кнопки та ім’я користувача справа -->
-  <div class="nav-actions">
-    <span *ngIf="isLoggedIn() && currentUser() as user">Привіт, {{ user.username }}</span>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav align-items-center gap-2 ms-auto">
 
-    <ng-container *ngIf="!isLoggedIn()">
-      <button (click)="login()">Login</button>
-      <button (click)="register()">Register</button>
-    </ng-container>
+      <!-- 🔒 Logged-in user (якщо currentUser завантажився) -->
+       <ng-container *ngIf="userService.user() as user; else guestLinks">
+        <li class="nav-item">
+          <span class="navbar-text text-light">Hey, {{ user.username }}</span>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/users" class="btn btn-outline-light">Users</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/posts" class="btn btn-outline-light">Posts</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-light" (click)="logout()">Logout</button>
+        </li>
+      </ng-container>
 
-    <ng-container *ngIf="isLoggedIn()">
-      <button (click)="logout()">Logout</button>
-    </ng-container>
+      <!-- 🔓 Guest -->
+      <ng-template #guestLinks>
+        <li class="nav-item">
+          <button class="btn btn-outline-light" (click)="login()">Login</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-light" (click)="register()">Register</button>
+        </li>
+      </ng-template>
+
+    </ul>
   </div>
 </nav>
 
-<!-- 🔁 Тут підвантажуються маршрути -->
-<router-outlet></router-outlet>
-
+<main class="p-4">
+  <router-outlet></router-outlet>
+</main>
