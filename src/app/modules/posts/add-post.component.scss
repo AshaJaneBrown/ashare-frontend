@@ -1,0 +1,42 @@
+.composer {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.composer-input {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  padding: 12px 14px;
+  outline: none;
+}
+.composer-input::placeholder { color: var(--muted); }
+
+.composer-actions { margin-top: 12px; }
+
+/* Універсальні кнопки під нашу тему */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 38px; padding: 0 16px; border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--text);
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .06s ease;
+}
+.btn:hover { border-color: color-mix(in oklab, var(--border), white 20%); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn.accent {
+  background: var(--panel);
+  border-color: transparent;
+}
+.btn.accent:hover {
+  background: color-mix(in oklab, var(--panel), white 6%);
+}

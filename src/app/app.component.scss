@@ -1,0 +1,107 @@
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  width: 220px;                       /* expanded width */
+  transition: width .2s ease;
+  padding: 12px 10px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.brand { display: inline-flex; align-items: center; text-decoration: none; }
+.logo  { height: 56px; width: auto; } /* big logo */
+
+/* collapse toggle at top */
+.collapse-toggle {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  cursor: pointer;
+}
+.collapse-toggle:hover { border-color: color-mix(in oklab, var(--border), white 20%); }
+.chev { display: inline-block; transform: rotate(0deg); transition: transform .2s ease; }
+.chev.rot { transform: rotate(180deg); }
+
+/* menu */
+.menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  margin: 0; padding: 8px 0 0;
+}
+
+.hello { color: var(--muted); font-size: 14px; padding: 6px 8px; }
+
+/* text-only links (no frames) */
+.link {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+}
+.link:hover {
+  background: color-mix(in oklab, var(--panel), white 4%);
+}
+
+/* Main content */
+.page {
+  flex: 1;
+  overflow: auto;
+  padding: 24px;
+}
+
+/* Collapsed state */
+.layout.sidebar-collapsed .sidebar { width: 72px; padding: 12px 6px; }
+.layout.sidebar-collapsed .logo { display: none; }           /* hide big logo */
+.layout.sidebar-collapsed .brand-row { justify-content: flex-start; }
+.layout.sidebar-collapsed .collapse-toggle { margin-left: 4px; }
+.layout.sidebar-collapsed .hello { display: none; }
+.layout.sidebar-collapsed .link {
+  padding: 8px;
+  white-space: nowrap; overflow: hidden; text-overflow: clip;
+}
+
+/* active page in the menu */
+.link.active {
+  position: relative;
+  background: color-mix(in oklab, var(--panel), white 6%);
+}
+.link.active::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 6px; bottom: 6px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+/* collapsed: keep the thin bar visible */
+.layout.sidebar-collapsed .link.active::before {
+  left: 2px;
+}
+

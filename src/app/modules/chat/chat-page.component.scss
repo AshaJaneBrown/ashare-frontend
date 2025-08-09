@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  background: transparent;
+  padding: 12px 16px;
+}
+
+/* Дати дочірньому app-chat реальну висоту екрану мінус хедер */
+:host ::ng-deep app-chat {
+  height: calc(100vh - 120px); /* підкоригуй 120px під твою шапку */
+}

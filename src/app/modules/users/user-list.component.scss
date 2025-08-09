@@ -1,0 +1,64 @@
+.users {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* hide old title */
+.section-title { display: none; }
+
+/* responsive CSS grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (min-width: 700px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* card */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text);             /* ensure bright text */
+}
+
+.card-head { display: flex; flex-direction: column; gap: 6px; }
+
+.title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.name  { font-size: 16px; font-weight: 700; color: var(--text); }  /* brighter */
+.email { font-size: 13px; color: #e0e0e6; }                        /* higher contrast */
+.bio   { margin: 2px 0 8px; line-height: 1.5; color: var(--muted); }
+
+.badge {
+  display: inline-flex; align-items: center; height: 22px;
+  padding: 0 8px; border-radius: 999px; font-size: 12px;
+  border: 1px solid var(--border); background: transparent; color: var(--text);
+}
+.badge.danger {
+  border-color: color-mix(in oklab, var(--border), #ff7a7a 40%);
+  background: color-mix(in oklab, var(--panel), #ff4d4d 10%);
+}
+
+/* actions */
+.actions { margin-top: auto; }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 34px; padding: 0 12px; border-radius: 12px;
+  border: 1px solid var(--border); background: transparent; color: var(--text);
+  cursor: pointer; text-decoration: none;
+  transition: background .2s ease, border-color .2s ease, transform .06s ease;
+}
+.btn:hover  { border-color: color-mix(in oklab, var(--border), white 20%); }
+.btn:active { transform: translateY(1px); }
+.btn.small  { height: 30px; padding: 0 10px; }
+
+.empty { margin-top: 24px; color: var(--muted); text-align: center; }

@@ -1,0 +1,23 @@
+:root {
+  --bg: #0e0f12;
+  --panel: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --text: #e7e7ea;
+  --muted: #a9a9b2;
+  --accent: #8ab4ff;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 60% -20%, #3a2b70 0%, transparent 60%),
+    radial-gradient(700px 400px at 30% 120%, #113a5a 0%, transparent 60%),
+    var(--bg);
+  font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans';
+}
+
+/* скидання браузерних рамок інпутів/кнопок */
+input, textarea, button { font: inherit; color: inherit; }

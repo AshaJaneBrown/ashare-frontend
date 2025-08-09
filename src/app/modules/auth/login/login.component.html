@@ -1,52 +1,21 @@
-<div class="form-card">
-  <h3 class="text-center mb-4">Login</h3>
 
-  <div *ngIf="errorMessage" class="alert alert-danger text-center">
-    {{ errorMessage }}
+<section class="auth-page">
+  <div class="auth-card">
+    <h2 class="auth-title">Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" formControlName="email" />
+      </label>
+
+      <label class="field">
+        <span>Password</span>
+        <input type="password" formControlName="password" />
+      </label>
+
+      <button class="btn accent full" type="submit" [disabled]="loginForm.invalid">Login</button>
+      <a class="muted-link" routerLink="/register">Create account</a>
+    </form>
   </div>
-
-  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input
-        type="email"
-        id="email"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && email.invalid }"
-        formControlName="email"
-      />
-      <div class="invalid-feedback" *ngIf="submitted && email.errors?.['required']">
-        Email is required
-      </div>
-      <div class="invalid-feedback" *ngIf="submitted && email.errors?.['email']">
-        Invalid email format
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && password.invalid }"
-        formControlName="password"
-      />
-      <div class="invalid-feedback" *ngIf="submitted && password.errors?.['required']">
-        Password is required
-      </div>
-    </div>
-
-    <div class="d-grid">
-      <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="submitted && loginForm.invalid"
-      >
-        Login
-      </button>
-    </div>
-  </form>
-</div>
-
-
+</section>

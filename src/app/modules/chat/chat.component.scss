@@ -1,0 +1,109 @@
+/* Панель чату як акуратна картка */
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;                 /* займай увесь простір батька */
+  min-height: 70vh;             /* підстраховка, якщо батько не задав висоту */
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: color-mix(in oklab, var(--panel), white 5%);
+  box-shadow: 0 8px 24px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.02);
+}
+
+/* Стрічка повідомлень: не стрибає, прилипає донизу, скролиться всередині */
+.thread {
+  flex: 1 1 auto;
+  min-height: 0;                /* критично, щоб флекс-контейнер не стрибав */
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain; /* щоб не тягнуло всю сторінку */
+  scroll-behavior: smooth;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-end;    /* коли мало повідомлень — внизу */
+}
+
+/* Один меседж */
+.msg {
+  max-width: min(72%, 680px);
+  display: grid;
+  gap: 6px;
+}
+
+.msg .body {
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--panel), white 5%);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 14px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.02);
+  line-height: 1.45;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.msg .time {
+  justify-self: end;
+  font-size: 11px;
+  color: color-mix(in oklab, var(--text), transparent 45%);
+  margin-top: -2px;
+}
+
+/* Мої повідомлення — праворуч, акцентна бульбашка */
+.msg.mine { align-self: flex-end; }
+.msg.mine .body {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent), white 12%), var(--accent));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 6px 18px color-mix(in oklab, var(--accent), transparent 70%);
+}
+
+/* Форма відправки — завжди внизу, не стискається, без sticky (щоб не смикалось) */
+.composer {
+  flex: 0 0 auto;               /* закріплює форму знизу */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px;
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  background: color-mix(in oklab, var(--panel), white 6%);
+  border-radius: 12px;
+}
+
+.composer input[type="text"] {
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg), white 4%);
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.composer input[type="text"]::placeholder {
+  color: color-mix(in oklab, var(--text), transparent 55%);
+}
+.composer input[type="text"]:focus {
+  border-color: color-mix(in oklab, var(--accent), white 20%);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent), transparent 75%);
+  background: color-mix(in oklab, var(--bg), white 6%);
+}
+
+.composer button {
+  min-width: 96px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent), white 12%), var(--accent));
+  color: #fff;
+  cursor: pointer;
+  transition: transform .06s ease, opacity .2s, background .2s;
+  box-shadow: 0 6px 18px color-mix(in oklab, var(--accent), transparent 70%);
+}
+.composer button:hover { filter: brightness(1.05); }
+.composer button:active { transform: translateY(1px); }
+.composer button:disabled { opacity: .6; cursor: not-allowed; box-shadow: none; }

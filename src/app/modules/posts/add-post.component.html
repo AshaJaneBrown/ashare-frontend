@@ -1,0 +1,16 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="composer">
+  <textarea
+    id="content"
+    class="composer-input"
+    formControlName="content"
+    rows="6"
+    placeholder="What’s on your mind?"
+  ></textarea>
+
+  <div class="composer-footer">
+    <button type="submit" class="btn accent" [disabled]="postForm.invalid">Add</button>
+  </div>
+</form>
+
+
+

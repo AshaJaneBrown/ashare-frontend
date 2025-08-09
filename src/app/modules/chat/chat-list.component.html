@@ -1,0 +1,13 @@
+<section class="chat-list">
+  <h2 class="title">Chats</h2>
+
+  <div *ngIf="loading" class="loading">Loading…</div>
+  <div *ngIf="!loading && chats.length === 0" class="empty">No chats yet</div>
+
+  <div class="item" *ngFor="let c of chats" (click)="open(c.id)">
+    <div class="who">{{ c.username }}</div>
+    <div class="time">{{ c.lastMessageTime | date:'shortTime' }}</div>
+    <div class="last">{{ c.lastMessage }}</div>
+  </div>
+</section>
+

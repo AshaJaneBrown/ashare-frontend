@@ -1,0 +1,97 @@
+.feed {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.feed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.feed-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* composer */
+.composer-wrapper {
+  display: block;
+  margin: 12px 0 16px;
+}
+
+app-add-post .composer {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--panel), white 4%) 0%, var(--panel) 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25) inset;
+}
+
+app-add-post .composer-input {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  padding: 12px 14px;
+  outline: none;
+}
+app-add-post .composer-input::placeholder { color: var(--muted); }
+
+app-add-post .composer-actions { margin-top: 12px; }
+
+app-add-post .btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 36px; padding: 0 14px; border-radius: 12px;
+  border: 1px solid var(--border); background: transparent; color: var(--text);
+  cursor: pointer; transition: background .2s, border-color .2s, transform .06s ease;
+}
+app-add-post .btn:hover { border-color: color-mix(in oklab, var(--border), white 20%); }
+app-add-post .btn:active { transform: translateY(1px); }
+
+/* posts */
+.post {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 12px;
+}
+.post-content { font-size: 16px; line-height: 1.55; }
+.post-meta { margin-top: 8px; font-size: 13px; color: var(--muted); }
+
+.end-cap {
+  text-align: center;
+  color: var(--muted);
+  padding: 16px 0;
+}
+
+/* generic button (header “Load more”) */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 34px; padding: 0 12px; border-radius: 12px;
+  border: 1px solid var(--border); background: transparent; color: var(--text);
+  cursor: pointer; text-decoration: none;
+  transition: background .2s, border-color .2s, transform .06s ease;
+}
+.btn:hover { border-color: color-mix(in oklab, var(--border), white 20%); }
+.btn:active { transform: translateY(1px); }
+.btn.outline { /* default look */ }
+
+.feed-footer {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 24px;
+}
+
+.load-more {
+  min-width: 160px;
+}
+

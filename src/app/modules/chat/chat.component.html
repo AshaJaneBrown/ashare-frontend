@@ -1,0 +1,12 @@
+<div class="thread" #thread>
+  <div class="msg" *ngFor="let m of messages" [class.mine]="m.senderId === currentUserId">
+    <div class="body">{{ m.content }}</div>
+    <div class="time">{{ m.timestamp | date:'shortTime' }}</div>
+  </div>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="send()" class="composer">
+  <input formControlName="text" type="text" placeholder="Type a message…" />
+  <button type="submit" [disabled]="form.invalid || sending">Send</button>
+</form>

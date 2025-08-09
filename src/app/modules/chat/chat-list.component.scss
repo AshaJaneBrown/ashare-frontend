@@ -1,0 +1,60 @@
+.chat-list {
+  padding: 16px;
+  background: transparent; /* було var(--bg) — прибираємо суцільний квадрат */
+  color: var(--text);
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.loading,
+.empty {
+  padding: 24px 8px;
+  text-align: center;
+  color: color-mix(in oklab, var(--text), transparent 40%);
+  font-size: 14px;
+}
+
+/* Картки чатів */
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 12px;
+  align-items: center;
+  padding: 12px 10px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--panel), white 4%);
+  box-shadow: 0 6px 14px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.02);
+  cursor: pointer;
+  transition: transform .06s ease, background .2s, border-color .2s;
+}
+.item + .item { margin-top: 10px; }
+
+.item:hover {
+  border-color: color-mix(in oklab, var(--border), white 22%);
+  background: color-mix(in oklab, var(--panel), white 7%);
+}
+.item:active { transform: translateY(1px); }
+
+.who {
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.last {
+  grid-column: 1 / -1;
+  color: color-mix(in oklab, var(--text), transparent 35%);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time {
+  font-size: 12px;
+  color: color-mix(in oklab, var(--text), transparent 50%);
+}

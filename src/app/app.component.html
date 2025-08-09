@@ -1,53 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 sticky-top">
-  <a class="navbar-brand d-flex align-items-center" href="#">
-    <img src="/logo3.png" alt="Ashare logo" height="50" class="me-3" />
-  </a>
+<div class="layout" [class.sidebar-collapsed]="collapsed">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="brand-row">
+        <a class="brand" routerLink="/">
+          <img src="/logo3.png" alt="Ashare logo" class="logo" />
+        </a>
 
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+        <button class="collapse-toggle"
+                (click)="collapsed = !collapsed"
+                [attr.aria-label]="collapsed ? 'Expand menu' : 'Collapse menu'">
+          <span class="chev" [class.rot]="collapsed">❮</span>
+        </button>
+      </div>
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-    <ul class="navbar-nav align-items-center gap-2 ms-auto">
-
-      <!-- 🔒 Logged-in user (якщо currentUser завантажився) -->
-       <ng-container *ngIf="userService.user() as user; else guestLinks">
-        <li class="nav-item">
-          <span class="navbar-text text-light">Hey, {{ user.username }}</span>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/users" class="btn btn-outline-light">Users</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/posts" class="btn btn-outline-light">Posts</a>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-outline-light" (click)="logout()">Logout</button>
-        </li>
-      </ng-container>
-
-      <!-- 🔓 Guest -->
-      <ng-template #guestLinks>
-        <li class="nav-item">
-          <button class="btn btn-outline-light" (click)="login()">Login</button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-outline-light" (click)="register()">Register</button>
-        </li>
-      </ng-template>
-
+      
+<nav class="menu">
+  <ul *ngIf="isLoggedIn(); else guestMenu">
+    <li class="hello">Hi, {{ user()?.username }}</li>
+    <li><a class="link" routerLink="/feed" title="Home">Home</a></li>
+    <li><a class="link" routerLink="/users" title="Users">Users</a></li>
+    <li><a class="link" routerLink="/chat" title="Chats">Chats</a></li>
+    <li><button class="link" (click)="logout()" title="Logout">Logout</button></li>
+  </ul>
+  <ng-template #guestMenu>
+    <ul>
+      <li><a class="link" routerLink="/login" title="Login">Login</a></li>
+      <li><a class="link" routerLink="/register" title="Create account">Register</a></li>
     </ul>
-  </div>
+  </ng-template>
 </nav>
 
-<main class="p-4">
-  <router-outlet></router-outlet>
-</main>
+    </div>
+  </aside>
+
+  <main class="page">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

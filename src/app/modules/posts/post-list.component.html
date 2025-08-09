@@ -1,11 +1,29 @@
-<div *ngIf="posts.length === 0">
-  No posts yet.
+<section class="feed">
+  <div class="feed-header">
+    <!-- <h2 class="feed-title">Feed</h2> -->
+  </div>
+
+  <!-- Beautiful dark composer -->
+  <app-add-post class="composer-wrapper"></app-add-post>
+
+  <!-- Posts list -->
+  <article class="post" *ngFor="let p of visible()">
+    <div class="post-content">{{ p.title || p.content }}</div>
+    <div class="post-meta">
+      Posted by {{ p.author.email || p.author.username }}
+      <span *ngIf="p.createdAt"> • {{ p.createdAt | date:'medium' }}</span>
+    </div>
+  </article>
+
+<!-- Load more at the bottom -->
+<div class="feed-footer" *ngIf="canLoadMore()">
+  <button class="btn outline load-more" (click)="loadMore()">Load more</button>
 </div>
 
-<ul *ngIf="posts.length > 0">
-  <li *ngFor="let post of posts">
-    <strong>{{ post.author.username }}</strong>: {{ post.content }}
-    <br />
-    <small>{{ post.createdAt }}</small>
-  </li>
-</ul>
+<!-- End cap when nothing more to load -->
+<div class="end-cap" *ngIf="!canLoadMore() && postService.posts().length">
+  You’re all caught up
+</div>
+
+</section>
+

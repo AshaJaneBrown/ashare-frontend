@@ -4,7 +4,7 @@ import { authGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'posts',
+    redirectTo: 'feed',
     pathMatch: 'full',
   },
 
@@ -27,17 +27,33 @@ export const routes: Routes = [
       import('./modules/auth/register/register.component').then(m => m.RegisterComponent),
   },
 
-  // {
-  //   path: 'posts/new',
-  //   loadComponent: () =>
-  //     import('./modules/posts/post-create.component').then(m => m.PostCreateComponent),
-  // },
+  {
+    path: 'feed',
+    loadComponent: () =>
+      import('./modules/posts/post-list.component').then(m => m.PostListComponent),
+    canActivate: [authGuard],
+  },
 
   {
     path: 'posts',
     loadComponent: () =>
       import('./modules/posts/post-list.component').then(m => m.PostListComponent),
     canActivate: [authGuard],
-  }
+  },
+
+{
+  path: 'chat',
+  loadComponent: () =>
+    import('./modules/chat/chat-list.component').then(m => m.ChatListComponent),
+  canActivate: [authGuard],
+},
+{
+  path: 'chat/:id',
+  loadComponent: () =>
+    import('./modules/chat/chat-page.component').then(m => m.ChatPageComponent),
+  canActivate: [authGuard],
+},
+
+
 ];
 

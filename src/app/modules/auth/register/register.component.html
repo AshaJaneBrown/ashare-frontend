@@ -1,71 +1,26 @@
-<div class="form-card">
-  <h3 class="text-center mb-4">Register</h3>
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
-    <!-- Username -->
-    <div class="mb-3">
-      <label for="username" class="form-label">Username</label>
-      <input
-        id="username"
-        type="text"
-        class="form-control"
-        formControlName="username"
-        [class.is-invalid]="submitted && f['username'].invalid"
-      />
-      <div class="invalid-feedback" *ngIf="submitted && f['username'].errors?.['required']">
-        Username is required
-      </div>
-    </div>
+<section class="auth-page">
+  <div class="auth-card">
+    <h2 class="auth-title">Create account</h2>
 
-    <!-- Email -->
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input
-        id="email"
-        type="email"
-        class="form-control"
-        formControlName="email"
-        [class.is-invalid]="submitted && f['email'].invalid"
-      />
-      <div class="invalid-feedback" *ngIf="submitted">
-        <ng-container *ngIf="f['email'].errors?.['required']">
-          Email is required
-        </ng-container>
-        <ng-container *ngIf="f['email'].errors?.['email']">
-          Invalid email format
-        </ng-container>
-      </div>
-    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+      <label class="field">
+        <span>Username</span>
+        <input type="text" formControlName="username" />
+      </label>
 
-    <!-- Password -->
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input
-        id="password"
-        type="password"
-        class="form-control"
-        formControlName="password"
-        [class.is-invalid]="submitted && f['password'].invalid"
-      />
-      <div class="invalid-feedback" *ngIf="submitted && f['password'].errors?.['required']">
-        Password is required
-      </div>
-    </div>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" formControlName="email" />
+      </label>
 
-    <!-- Bio -->
-    <div class="mb-3">
-      <label for="bio" class="form-label">Bio (optional)</label>
-      <textarea
-        id="bio"
-        class="form-control"
-        formControlName="bio"
-        rows="3"
-      ></textarea>
-    </div>
+      <label class="field">
+        <span>Password</span>
+        <input type="password" formControlName="password" />
+      </label>
 
-    <!-- Submit -->
-    <div class="d-grid">
-      <button type="submit" class="btn btn-success">Register</button>
-    </div>
-  </form>
-</div>
+      <button class="btn accent full" type="submit" [disabled]="registerForm.invalid">Register</button>
+      <a class="muted-link" routerLink="/login">I already have an account</a>
+    </form>
+  </div>
+</section>
